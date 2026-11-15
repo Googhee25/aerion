@@ -1,0 +1,715 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AERION | The Future Takes Flight</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --text: #17212c;
+  --muted: #788492;
+  --accent: #3478f6;
+  --line: #e5eaf0;
+}
+
+body.dark {
+  --bg: #101820;
+  --surface: #1a2632;
+  --text: #f2f6fa;
+  --muted: #a1afbc;
+  --accent: #72a4ff;
+  --line: #2b3946;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  transition: background .35s, color .35s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav {
+  height: 80px;
+  padding: 0 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-family: 'Space Grotesk';
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.theme-btn {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 30px;
+  padding: 10px 17px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.hero {
+  min-height: 660px;
+  padding: 100px 8%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+}
+
+.tag {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-family: 'Space Grotesk';
+  font-size: clamp(48px, 7vw, 83px);
+  line-height: 1.04;
+  letter-spacing: -4px;
+  margin-bottom: 25px;
+}
+
+h1 span { color: var(--accent); }
+
+.hero p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.8;
+  max-width: 460px;
+  margin-bottom: 35px;
+}
+
+.primary-btn {
+  display: inline-block;
+  padding: 16px 29px;
+  background: var(--accent);
+  color: white;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px #3478f644;
+}
+
+.hero-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 57%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .9;
+  mask-image: linear-gradient(to right, transparent, black 30%);
+}
+
+section {
+  padding: 100px 8%;
+  scroll-margin-top: 75px;
+}
+
+.section-tag {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.section-title {
+  font-family: 'Space Grotesk';
+  font-size: clamp(35px, 5vw, 52px);
+  letter-spacing: -2px;
+  margin-bottom: 18px;
+}
+
+.section-desc {
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 580px;
+  margin-bottom: 45px;
+}
+
+/* TECHNOLOGY */
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tech-card {
+  background: var(--surface);
+  padding: 35px;
+  border-radius: 15px;
+  border: 1px solid var(--line);
+  transition: .3s;
+}
+
+.tech-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--accent);
+}
+
+.tech-icon {
+  font-size: 35px;
+  margin-bottom: 25px;
+}
+
+.tech-card h3 {
+  font-family: 'Space Grotesk';
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.tech-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* FLEET */
+
+.fleet {
+  background: var(--surface);
+}
+
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.car-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.car-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px #00000012;
+}
+
+.car-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.car-info { padding: 25px; }
+
+.car-info h3 {
+  font-family: 'Space Grotesk';
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+.car-info p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.price {
+  font-size: 25px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.price small {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.car-info a {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  padding: 12px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.car-info a:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* CONTACT */
+
+.contact-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 45px;
+  max-width: 700px;
+}
+
+.contact-box input,
+.contact-box textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  font-family: inherit;
+  outline: none;
+}
+
+.contact-box input:focus,
+.contact-box textarea:focus {
+  border-color: var(--accent);
+}
+
+.contact-box textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.contact-box button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+footer {
+  padding: 35px 8%;
+  background: #101820;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 12px;
+}
+
+footer span { color: #91a2b5; }
+
+/* FOLLOWING ROBOT */
+
+.robot {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 90px;
+  height: 100px;
+  z-index: 200;
+  background: #dce9ff;
+  border: 3px solid #3478f6;
+  border-radius: 35px 35px 27px 27px;
+  box-shadow: 0 8px 25px #0002;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.robot::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  width: 4px;
+  height: 15px;
+  background: #3478f6;
+}
+
+.robot::after {
+  content: "";
+  position: absolute;
+  top: -22px;
+  width: 12px;
+  height: 12px;
+  background: #3478f6;
+  border-radius: 50%;
+}
+
+.eye {
+  width: 19px;
+  height: 25px;
+  border-radius: 50%;
+  background: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.pupil {
+  width: 9px;
+  height: 12px;
+  border-radius: 50%;
+  background: #142d4c;
+  position: absolute;
+  top: 6px;
+  left: 5px;
+  transition: transform .06s;
+}
+
+.robot-mouth {
+  position: absolute;
+  bottom: 19px;
+  width: 20px;
+  height: 7px;
+  border-bottom: 3px solid #3478f6;
+  border-radius: 50%;
+}
+
+.robot-label {
+  position: absolute;
+  bottom: -23px;
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@media(max-width: 850px) {
+  .hero-image {
+    width: 100%;
+    opacity: .22;
+    mask-image: none;
+  }
+
+  .hero-content { max-width: 100%; }
+  .tech-grid, .car-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 12px; }
+}
+
+@media(max-width: 550px) {
+  nav { padding: 0 5%; height: auto; min-height: 75px; flex-wrap: wrap; gap: 12px; padding-top: 15px; padding-bottom: 15px; }
+  .nav-links { width: 100%; justify-content: space-between; font-size: 11px; }
+  .theme-btn { padding: 8px 10px; }
+  section { padding: 70px 6%; }
+  .hero { padding: 100px 6%; min-height: 600px; }
+  h1 { letter-spacing: -2px; }
+  .contact-box { padding: 25px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+  <a href="#home" class="logo">AER<span>ION</span></a>
+
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#technology">Technology</a>
+    <a href="#fleet">Our Fleet</a>
+    <a href="#contact">Contact</a>
+    <button class="theme-btn" id="themeToggle">☾ Dark Mode</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+
+<header class="hero" id="home">
+
+  <img class="hero-image"
+  src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=1200"
+  alt="Futuristic city landscape">
+
+  <div class="hero-content">
+    <div class="tag">THE NEXT GENERATION OF MOBILITY</div>
+
+    <h1>The future<br>takes <span>flight.</span></h1>
+
+    <p>
+      Forget traffic. Forget limits.
+      Discover a new dimension of transportation
+      with AERION's revolutionary flying vehicles.
+    </p>
+
+    <a href="#fleet" class="primary-btn">Explore our fleet ↗</a>
+  </div>
+</header>
+
+<!-- TECHNOLOGY -->
+
+<section id="technology">
+
+  <div class="section-tag">01 — INNOVATION</div>
+  <h2 class="section-title">Beyond the ordinary.</h2>
+
+  <p class="section-desc">
+    We combine advanced engineering, artificial intelligence
+    and sustainable energy to redefine the way the world moves.
+  </p>
+
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-icon">⚡</div>
+      <h3>Electric Power</h3>
+      <p>
+        Fully electric propulsion designed for
+        efficient, quiet and environmentally
+        conscious journeys.
+      </p>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-icon">◈</div>
+      <h3>Smart Navigation</h3>
+      <p>
+        Intelligent navigation systems calculate
+        routes and continuously monitor the
+        surrounding environment.
+      </p>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-icon">✧</div>
+      <h3>Advanced Safety</h3>
+      <p>
+        Multiple sensors and automated flight
+        assistance help create a smarter
+        transportation experience.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLEET -->
+
+<section class="fleet" id="fleet">
+
+  <div class="section-tag">02 — OUR COLLECTION</div>
+  <h2 class="section-title">Choose your future.</h2>
+
+  <p class="section-desc">
+    Three exclusive concepts. Three different ways
+    to experience the sky.
+  </p>
+
+  <div class="car-grid">
+
+    <div class="car-card">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900"
+      alt="AERION One concept car">
+
+      <div class="car-info">
+        <h3>AERION ONE</h3>
+        <p>
+          The perfect introduction to personal
+          aerial mobility. Minimalist, elegant
+          and efficient.
+        </p>
+        <div class="price">€185,000 <small>/ starting price</small></div>
+        <a href="#contact">Discover model ↗</a>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=900"
+      alt="AERION X concept vehicle">
+
+      <div class="car-info">
+        <h3>AERION X</h3>
+        <p>
+          Performance meets innovation.
+          A premium design created for
+          extraordinary journeys.
+        </p>
+        <div class="price">€320,000 <small>/ starting price</small></div>
+        <a href="#contact">Discover model ↗</a>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900"
+      alt="AERION Infinity concept">
+
+      <div class="car-info">
+        <h3>AERION INFINITY</h3>
+        <p>
+          Our ultimate luxury concept.
+          Exceptional comfort and a
+          completely new perspective.
+        </p>
+        <div class="price">€590,000 <small>/ starting price</small></div>
+        <a href="#contact">Discover model ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+  <div class="section-tag">03 — GET IN TOUCH</div>
+  <h2 class="section-title">Your next journey<br>starts here.</h2>
+
+  <p class="section-desc">
+    Interested in discovering the future?
+    Leave us a message and our team will
+    get back to you.
+  </p>
+
+  <div class="contact-box">
+
+    <form id="contactForm">
+      <input type="text" placeholder="Your full name" required>
+      <input type="email" placeholder="Your email address" required>
+      <input type="text" placeholder="Which model interests you?">
+      <textarea placeholder="Tell us what you have in mind..."></textarea>
+
+      <button type="submit" class="primary-btn">
+        Send message ↗
+      </button>
+    </form>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div>
+    <strong>AERION</strong>
+    <span> — The future takes flight.</span>
+  </div>
+
+  <div>© 2026 AERION Mobility. All rights reserved.</div>
+  <div>Designed for tomorrow.</div>
+</footer>
+
+<!-- ROBOT THAT FOLLOWS THE MOUSE -->
+
+<div class="robot" id="robot">
+  <div class="eye"><div class="pupil"></div></div>
+  <div class="eye"><div class="pupil"></div></div>
+  <div class="robot-mouth"></div>
+  <div class="robot-label">AERO BOT</div>
+</div>
+
+<script>
+
+// DARK MODE / LIGHT MODE
+
+const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    themeToggle.textContent = "☀ Light Mode";
+  } else {
+    themeToggle.textContent = "☾ Dark Mode";
+  }
+});
+
+
+// ROBOT EYES FOLLOW THE MOUSE
+
+const pupils = document.querySelectorAll(".pupil");
+
+document.addEventListener("mousemove", (event) => {
+
+  pupils.forEach(pupil => {
+
+    const eye = pupil.parentElement;
+    const rect = eye.getBoundingClientRect();
+
+    const eyeX = rect.left + rect.width / 2;
+    const eyeY = rect.top + rect.height / 2;
+
+    const angle = Math.atan2(
+      event.clientY - eyeY,
+      event.clientX - eyeX
+    );
+
+    const distance = 5;
+
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
+
+    pupil.style.transform =
+      `translate(${x}px, ${y}px)`;
+
+  });
+
+});
+
+
+// CONTACT FORM DEMO
+
+document.getElementById("contactForm")
+.addEventListener("submit", function(event) {
+
+  event.preventDefault();
+
+  alert("Thank you for contacting AERION! We'll be in touch soon.");
+
+  this.reset();
+
+});
+
+</script>
+
+</body>
+</html>
